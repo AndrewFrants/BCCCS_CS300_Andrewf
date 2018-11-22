@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "ArrayFullException.h"
 
 // Sample application of storing barcodes

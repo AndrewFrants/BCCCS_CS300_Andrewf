@@ -1,26 +1,35 @@
+﻿/////////////////////////////////////////////////
+// Andrew Frantsuzov CS 300
+//    Homework 4 : BST implementation of search
+/////////////////////////////////////////////////
+
 #include "ScannedItem.h"
 
-
+// c'tor
 ScannedItem::ScannedItem()
 {
 }
 
+// copy c'tor
 ScannedItem::ScannedItem(const ScannedItem& o)
 {
 	this->barcode = o.barcode;
 	this->description = o.description;
 }
 
+// c'tor
 ScannedItem::ScannedItem(double& barcode, string desc)
 {
 	this->barcode = barcode;
 	this->description = desc;
 }
 
+// d'tor
 ScannedItem::~ScannedItem()
 {
 }
 
+// assignment op
 const ScannedItem& ScannedItem::operator=(ScannedItem& o) {
 	if (!(*this == o)) {
 		this->barcode = o.barcode;
@@ -29,20 +38,17 @@ const ScannedItem& ScannedItem::operator=(ScannedItem& o) {
 	return *this;
 }
 
+// comparison op
 bool operator<(ScannedItem& left, ScannedItem& right) {
 	return (left.barcode < right.barcode);
 }
 
+// comparison op
 bool operator>(ScannedItem& left, ScannedItem& right) {
 	return (left.barcode > right.barcode);
 }
 
-// The Key for passenger is First and Last
-// so we use these to determine if the passengers
-// are the same
-// Caveat: This operator is used for search
-// so we need to support the case where first
-// name may be empty
+// equality op
 bool operator==(ScannedItem& left, ScannedItem& right)
 {
 	return (left.barcode == right.barcode);
