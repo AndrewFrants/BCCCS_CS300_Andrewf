@@ -56,7 +56,9 @@ bool loadData(BinarySearchTree<ScannedItem>* barcodeBst, long loadCount, double&
 				{
 					searchForBarcode = barcode;
 				}
-				barcodeBst->insert(ScannedItem(barcode, ""));
+
+				ScannedItem item(barcode, "");
+				barcodeBst->insert(item);
 			}
 
 			tokenIndex++;
