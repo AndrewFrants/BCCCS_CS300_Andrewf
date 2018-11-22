@@ -27,14 +27,14 @@ void measureClock(clock_t t)
 	cout << "time (s): " << t * 1.0 / CLOCKS_PER_SEC << " seconds (" << CLOCKS_PER_SEC << " clocks per second)" << endl;
 }
 
-// load test data into array
+// loadData loadCount to be at least 100
 bool loadTestData(ArrayBarcodes<ScannedItem>* barcodeArray, long loadCount, double& searchForBarcode)
 {
 	string token;
 	ifstream file;
-	file.open("C:\\Users\\Andrew\\Documents\\Visual Studio 2017\\Projects\\CS300_Hw3\\Debug\\upc_corpus.txt");
+	file.open("upc_corpus.txt");
 	if (!file.is_open()) {
-		cout << "Barcodes file was not opened.";
+		cout << "Barcodes file upc_corpus.txt was not opened. Expected to be in same folder as app.";
 		return false;
 	}
 
@@ -80,12 +80,16 @@ int main()
 {
 	double searchForBarcode = 0.0;
 
-	for (int i = 10000; i <= 100000000; i *= 10) // every order of magnitude
+	for (int i = 10000; i <= 10000000; i *= 10) // every order of magnitude
 	{
 		cout << "Count of items (n): " << i << endl;
 
 		ArrayBarcodes<ScannedItem>* barcodeArray = new ArrayBarcodes<ScannedItem>(i + 1);
-		loadTestData(barcodeArray, i, searchForBarcode);
+		if (!loadTestData(barcodeArray, i, searchForBarcode))
+		{
+			cout << "failed loading barcodes";
+			return 1;
+		}
 		
 		cout << "Performing search 100 times ..." << endl;
 		clock_t clock = startClock();

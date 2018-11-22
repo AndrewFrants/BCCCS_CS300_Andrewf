@@ -6,8 +6,11 @@
 template <class T>
 class ArrayBarcodes
 {
+	// array of items
 	T* arrayList;
+	// top item
 	long top;
+	// max count of items
 	long count;
 public:
 	// designed to store billions of records
